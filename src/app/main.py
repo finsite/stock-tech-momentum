@@ -1,37 +1,33 @@
-from typing import Any  # ✅ Fixes the error
+"""
+Main entry point for the Momentum Indicator Service.
+
+This script starts the service that consumes stock data messages from a message queue
+(RabbitMQ or SQS), applies momentum-based technical analysis, and sends the results to output.
+"""
+
+import os
+import sys
+
+# Add 'src/' to Python's module search path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from app.logger import setup_logger
+from app.queue_handler import consume_messages
+
+# Initialize logger
+logger = setup_logger(__name__)
 
 
-def add_numbers(a: int | float, b: int | float) -> int | float:
+def main() -> None:
     """
-    Adds two numbers and returns the result.
+    Main function to launch the momentum analysis service.
 
-    Args:
-        a (Union[int, float]): The first number.
-        b (Union[int, float]): The second number.
-
-    Returns:
-        Union[int, float]: The sum of the two numbers.
+    This starts the message consumer which waits for new stock data,
+    analyzes it using momentum indicators, and outputs the result.
     """
-    return a + b
+    logger.info("Starting Momentum Indicator Analysis Service...")
+    consume_messages()
 
 
-class ExampleClass:
-    """A simple example class."""
-
-    def __init__(self, value: Any):
-        """
-        Initializes ExampleClass.
-
-        Args:
-            value (Any): The value to store.
-        """
-        self.value = value
-
-    def get_value(self) -> Any:
-        """
-        Retrieve the value assigned to the object.
-
-        Returns:
-            Any: The stored value.
-        """
-        return self.value
+if __name__ == "__main__":
+    main()
