@@ -19,7 +19,10 @@ QUEUE_TYPE = os.getenv("QUEUE_TYPE", "rabbitmq").lower()
 # RabbitMQ config
 RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "localhost")
 RABBITMQ_EXCHANGE = os.getenv("RABBITMQ_EXCHANGE", "stock_analysis")
-RABBITMQ_ROUTING_KEY = os.getenv("RABBITMQ_ROUTING_KEY", "analysis")
+RABBITMQ_ROUTING_KEY = os.getenv("RABBITMQ_ROUTING_KEY", "momentum")
+RABBITMQ_VHOST = os.getenv("RABBITMQ_VHOST", "/")
+RABBITMQ_USER = os.getenv("RABBITMQ_USER", "guest")
+RABBITMQ_PASSWORD = os.getenv("RABBITMQ_PASSWORD", "guest")
 
 # SQS config
 SQS_QUEUE_URL = os.getenv("SQS_QUEUE_URL", "")
@@ -41,12 +44,7 @@ def publish_to_queue(payload: list[dict]) -> None:
     Publishes the processed stock analysis results to RabbitMQ or SQS.
 
     Args:
-    ----
         payload (list[dict]): A list of dictionaries representing processed results.
-
-    Returns:
-    -------
-        None
     """
     for message in payload:
         if QUEUE_TYPE == "rabbitmq":
@@ -60,7 +58,14 @@ def publish_to_queue(payload: list[dict]) -> None:
 def _send_to_rabbitmq(data: dict) -> None:
     """Helper to send a message to RabbitMQ."""
     try:
-        connection = pika.BlockingConnection(pika.ConnectionParameters(host=RABBITMQ_HOST))
+        credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD)
+        connection = pika.BlockingConnection(
+            pika.ConnectionParameters(
+                host=RABBITMQ_HOST,
+                virtual_host=RABBITMQ_VHOST,
+                credentials=credentials,
+            )
+        )
         channel = connection.channel()
 
         channel.basic_publish(

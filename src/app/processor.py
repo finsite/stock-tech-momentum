@@ -5,7 +5,7 @@ Processes stock data to compute multiple momentum indicators.
 import pandas as pd
 import numpy as np
 from app.logger import setup_logger
-
+from app.output_handler import send_to_output
 logger = setup_logger(__name__)
 
 

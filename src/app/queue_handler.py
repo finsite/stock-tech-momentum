@@ -28,6 +28,7 @@ RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "localhost")
 RABBITMQ_EXCHANGE = os.getenv("RABBITMQ_EXCHANGE", "stock_analysis")
 RABBITMQ_QUEUE = os.getenv("RABBITMQ_QUEUE", "momentum_analysis_queue")
 RABBITMQ_ROUTING_KEY = os.getenv("RABBITMQ_ROUTING_KEY", "#")
+RABBITMQ_VHOST = os.getenv("RABBITMQ_VHOST", "/")
 
 # SQS config
 SQS_QUEUE_URL = os.getenv("SQS_QUEUE_URL", "")
@@ -49,7 +50,7 @@ def connect_to_rabbitmq() -> pika.BlockingConnection:
     retries = 5
     while retries > 0:
         try:
-            conn = pika.BlockingConnection(pika.ConnectionParameters(host=RABBITMQ_HOST))
+            conn = pika.BlockingConnection(pika.ConnectionParameters(host=RABBITMQ_HOST,virtual_host=RABBITMQ_VHOST))
             if conn.is_open:
                 logger.info("Connected to RabbitMQ")
                 return conn
