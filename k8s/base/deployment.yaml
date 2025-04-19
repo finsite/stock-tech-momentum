@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stock-tech-momentum
+  labels:
+    app: stock-tech-momentum
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stock-tech-momentum
+  template:
+    metadata:
+      labels:
+        app: stock-tech-momentum
+    spec:
+      containers:
+        - name: stock-tech-momentum
+          image: stock-tech-momentum:latest
+          ports:
+            - containerPort: 8080
