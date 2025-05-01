@@ -1,8 +1,8 @@
 """
 Handles message queue consumption for RabbitMQ and SQS.
 
-This module receives stock data, applies momentum analysis indicators,
-and sends the processed results to the output handler.
+This module receives stock data, applies momentum analysis indicators, and sends the
+processed results to the output handler.
 """
 
 import json
@@ -50,7 +50,9 @@ def connect_to_rabbitmq() -> pika.BlockingConnection:
     retries = 5
     while retries > 0:
         try:
-            conn = pika.BlockingConnection(pika.ConnectionParameters(host=RABBITMQ_HOST,virtual_host=RABBITMQ_VHOST))
+            conn = pika.BlockingConnection(
+                pika.ConnectionParameters(host=RABBITMQ_HOST, virtual_host=RABBITMQ_VHOST)
+            )
             if conn.is_open:
                 logger.info("Connected to RabbitMQ")
                 return conn

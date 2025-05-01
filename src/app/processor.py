@@ -1,11 +1,10 @@
-"""
-Processes stock data to compute multiple momentum indicators.
-"""
+"""Processes stock data to compute multiple momentum indicators."""
 
-import pandas as pd
 import numpy as np
+import pandas as pd
+
 from app.logger import setup_logger
-from app.output_handler import send_to_output
+
 logger = setup_logger(__name__)
 
 
@@ -58,8 +57,12 @@ def compute_indicators(data: pd.DataFrame) -> pd.DataFrame:
 
         # True Strength Index (TSI)
         price_change = data["Close"].diff()
-        double_smoothed_pc = price_change.ewm(span=25, adjust=False).mean().ewm(span=13, adjust=False).mean()
-        double_smoothed_abs_pc = price_change.abs().ewm(span=25, adjust=False).mean().ewm(span=13, adjust=False).mean()
+        double_smoothed_pc = (
+            price_change.ewm(span=25, adjust=False).mean().ewm(span=13, adjust=False).mean()
+        )
+        double_smoothed_abs_pc = (
+            price_change.abs().ewm(span=25, adjust=False).mean().ewm(span=13, adjust=False).mean()
+        )
         data["TSI"] = 100 * (double_smoothed_pc / double_smoothed_abs_pc)
 
         # Awesome Oscillator (AO)
@@ -71,7 +74,9 @@ def compute_indicators(data: pd.DataFrame) -> pd.DataFrame:
         # Commodity Channel Index (CCI)
         typical_price = (data["High"] + data["Low"] + data["Close"]) / 3
         sma_tp = typical_price.rolling(window=20).mean()
-        mad = typical_price.rolling(window=20).apply(lambda x: np.mean(np.abs(x - x.mean())), raw=True)
+        mad = typical_price.rolling(window=20).apply(
+            lambda x: np.mean(np.abs(x - x.mean())), raw=True
+        )
         data["CCI"] = (typical_price - sma_tp) / (0.015 * mad)
 
         # Chande Momentum Oscillator (CMO)
@@ -81,7 +86,9 @@ def compute_indicators(data: pd.DataFrame) -> pd.DataFrame:
 
         # Ultimate Oscillator (UO)
         bp = data["Close"] - data[["Low", "Close"].shift(1)].min(axis=1)
-        tr = data[["High", "Close"].shift(1)].max(axis=1) - data[["Low", "Close"].shift(1)].min(axis=1)
+        tr = data[["High", "Close"].shift(1)].max(axis=1) - data[["Low", "Close"].shift(1)].min(
+            axis=1
+        )
         avg7 = bp.rolling(7).sum() / tr.rolling(7).sum()
         avg14 = bp.rolling(14).sum() / tr.rolling(14).sum()
         avg28 = bp.rolling(28).sum() / tr.rolling(28).sum()

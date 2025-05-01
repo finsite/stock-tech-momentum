@@ -2,7 +2,8 @@
 Main entry point for the Momentum Indicator Service.
 
 This script starts the service that consumes stock data messages from a message queue
-(RabbitMQ or SQS), applies momentum-based technical analysis, and sends the results to output.
+(RabbitMQ or SQS), applies momentum-based technical analysis, and sends the results to
+output.
 """
 
 import os
@@ -22,8 +23,8 @@ def main() -> None:
     """
     Main function to launch the momentum analysis service.
 
-    This starts the message consumer which waits for new stock data,
-    analyzes it using momentum indicators, and outputs the result.
+    This starts the message consumer which waits for new stock data, analyzes it using
+    momentum indicators, and outputs the result.
     """
     logger.info("Starting Momentum Indicator Analysis Service...")
     consume_messages()
