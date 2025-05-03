@@ -10,6 +10,7 @@ import os
 import time
 
 import boto3
+import pandas as pd
 import pika
 from botocore.exceptions import BotoCoreError, NoCredentialsError
 
@@ -79,9 +80,15 @@ def consume_rabbitmq() -> None:
             message = json.loads(body)
             logger.info("Received message: %s", message)
 
-            result = analyze_momentum(message)
-            send_to_output(result)
+            df = pd.DataFrame(message["data"])
+            result = {
+                "symbol": message.get("symbol"),
+                "timestamp": message.get("timestamp"),
+                "source": "Momentum",
+                "indicators": analyze_momentum(df),
+            }
 
+            send_to_output(result)
             ch.basic_ack(delivery_tag=method.delivery_tag)
         except json.JSONDecodeError:
             logger.error("Invalid JSON: %s", body)
@@ -124,7 +131,14 @@ def consume_sqs() -> None:
                     body = json.loads(msg["Body"])
                     logger.info("Received SQS message: %s", body)
 
-                    result = analyze_momentum(body)
+                    df = pd.DataFrame(body["data"])
+                    result = {
+                        "symbol": body.get("symbol"),
+                        "timestamp": body.get("timestamp"),
+                        "source": "Momentum",
+                        "indicators": analyze_momentum(df),
+                    }
+
                     send_to_output(result)
 
                     sqs_client.delete_message(
