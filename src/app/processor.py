@@ -15,10 +15,11 @@ def compute_indicators(data: pd.DataFrame) -> pd.DataFrame:
     Compute multiple momentum indicators on a stock DataFrame.
 
     Args:
-        data (pd.DataFrame): Must contain 'Close', 'High', 'Low' prices.
+      data(pd.DataFrame): Must contain 'Close', 'High', 'Low' prices.
+      data: pd.DataFrame:
 
     Returns:
-        pd.DataFrame: The original DataFrame with new indicator columns.
+      pd.DataFrame: The original DataFrame with new indicator columns.
     """
     try:
         data = data.copy()
@@ -109,10 +110,11 @@ def analyze_momentum(data: pd.DataFrame) -> dict[str, Any]:
     Analyze stock data using momentum indicators and return a structured result.
 
     Args:
-        data (pd.DataFrame): The input data containing stock OHLC values.
+      data(pd.DataFrame): The input data containing stock OHLC values.
+      data: pd.DataFrame:
 
     Returns:
-        dict[str, Any]: A dictionary containing the most recent values for each indicator.
+      dict[str, Any]: A dictionary containing the most recent values for each indicator.
     """
     df = compute_indicators(data)
     if df.empty:

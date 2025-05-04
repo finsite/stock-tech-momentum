@@ -25,6 +25,10 @@ def main() -> None:
 
     This starts the message consumer which waits for new stock data, analyzes it using
     momentum indicators, and outputs the result.
+
+    Args:
+
+    Returns:
     """
     logger.info("Starting Momentum Indicator Analysis Service...")
     consume_messages()
