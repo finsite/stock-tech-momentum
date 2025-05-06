@@ -1,4 +1,16 @@
-## Unreleased
+## v0.2.0 (2025-05-06)
+
+### Fix
+
+- **docs**: Merge old pyproject.toml into new one with commitzen
+
+## v0.1.50 (2025-05-05)
+
+## v0.1.49 (2025-05-04)
+
+### Feat
+
+- **docs**: Update changlog generation to commitzen
 
 ## v0.1.48 (2025-05-04)
 
