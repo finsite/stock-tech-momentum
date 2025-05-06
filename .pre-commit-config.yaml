@@ -124,7 +124,6 @@ repos:
     hooks:
       - id: yamlfix
         files: \.(yaml|yml)$
-
   - repo: https://github.com/commitizen-tools/commitizen
     rev: v4.6.2
     hooks:
@@ -157,7 +156,6 @@ repos:
   #       entry: pytest --maxfail=3 --disable-warnings --cov=src --cov-report=term-missing --cov-fail-under=85
   #       language: system
   #       pass_filenames: false
-
   - repo: https://github.com/fpgmaas/deptry.git
     rev: 0.23.0
     hooks:
