@@ -1,3 +1,9 @@
+## v0.2.2 (2025-05-07)
+
+### Fix
+
+- **lint**: Fix pre-commit and disable pytest workflow
+
 ## v0.2.1 (2025-05-07)
 
 ### Fix
