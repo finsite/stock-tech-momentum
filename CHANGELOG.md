@@ -1,3 +1,9 @@
+## v0.2.1 (2025-05-07)
+
+### Fix
+
+- **docker**: Fix workflow not getting version
+
 ## v0.2.0 (2025-05-06)
 
 ### Fix
