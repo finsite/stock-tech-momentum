@@ -1,3 +1,9 @@
+## v0.2.3 (2025-05-07)
+
+### Fix
+
+- **test**: Disable pytest performance benchmark
+
 ## v0.2.2 (2025-05-07)
 
 ### Fix
