@@ -1,3 +1,10 @@
+## v0.2.5 (2025-05-24)
+
+### Fix
+
+- **poller**: integrate updates
+- **poller**: integrate updates
+
 ## v0.2.4 (2025-05-08)
 
 ### Fix
