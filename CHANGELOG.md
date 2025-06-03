@@ -1,3 +1,10 @@
+## v0.3.0 (2025-05-24)
+
+### Feat
+
+- **versioning**: enforce version consistency across pyproject.toml, __init__.py, and changelog
+- **versioning**: enforce version consistency across pyproject.toml, __init__.py, and changelog
+
 ## v0.2.5 (2025-05-24)
 
 ### Fix
