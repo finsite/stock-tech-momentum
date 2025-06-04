@@ -26,6 +26,7 @@ def compute_indicators(data: pd.DataFrame) -> pd.DataFrame:
     :param data: type data: pd.DataFrame :
     :param data: pd.DataFrame:
     :param data: pd.DataFrame:
+    :param data: pd.DataFrame:
     :param data: pd.DataFrame: 
 
     """
@@ -128,6 +129,7 @@ def analyze_momentum(data: pd.DataFrame) -> dict[str, Any]:
     :param data: pd.DataFrame:
     :param data: type data: pd.DataFrame :
     :param data: type data: pd.DataFrame :
+    :param data: pd.DataFrame:
     :param data: pd.DataFrame:
     :param data: pd.DataFrame:
     :param data: pd.DataFrame: 
