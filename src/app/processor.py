@@ -24,6 +24,7 @@ def compute_indicators(data: pd.DataFrame) -> pd.DataFrame:
       pd.DataFrame: The original DataFrame with new indicator columns.
 
     :param data: pd.DataFrame:
+    :param data: pd.DataFrame:
     :param data: pd.DataFrame: 
 
     """
@@ -125,6 +126,7 @@ def analyze_momentum(data: pd.DataFrame) -> dict[str, Any]:
     -------
       dict[str, Any]: A dictionary containing the most recent values for each indicator.
 
+    :param data: pd.DataFrame:
     :param data: pd.DataFrame:
     :param data: pd.DataFrame: 
 
