@@ -19,10 +19,6 @@ def compute_indicators(data: pd.DataFrame) -> pd.DataFrame:
       data: pd.DataFrame:
       data: pd.DataFrame:
 
-    Returns:
-    -------
-      pd.DataFrame: The original DataFrame with new indicator columns.
-
     Parameters
     ----------
     data :
@@ -31,11 +27,14 @@ def compute_indicators(data: pd.DataFrame) -> pd.DataFrame:
         pd.DataFrame:
     data :
         pd.DataFrame:
+    data : pd.DataFrame :
+
     data: pd.DataFrame :
 
 
     Returns
     -------
+
 
     """
     try:
@@ -132,10 +131,6 @@ def analyze_momentum(data: pd.DataFrame) -> dict[str, Any]:
       data: pd.DataFrame:
       data: pd.DataFrame:
 
-    Returns:
-    -------
-      dict[str, Any]: A dictionary containing the most recent values for each indicator.
-
     Parameters
     ----------
     data :
@@ -144,11 +139,14 @@ def analyze_momentum(data: pd.DataFrame) -> dict[str, Any]:
         pd.DataFrame:
     data :
         pd.DataFrame:
+    data : pd.DataFrame :
+
     data: pd.DataFrame :
 
 
     Returns
     -------
+
 
     """
     df = compute_indicators(data)
