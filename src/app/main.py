@@ -20,15 +20,15 @@ logger = setup_logger(__name__)
 
 def main() -> None:
     """Main function to launch the momentum analysis service.
-    
+
     This starts the message consumer which waits for new stock data, analyzes it using
     momentum indicators, and outputs the result.
-    
+
     Args:
     ----
 
 
-    
+
     """
     logger.info("Starting Momentum Indicator Analysis Service...")
     consume_messages()
