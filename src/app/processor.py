@@ -12,7 +12,7 @@ logger = setup_logger(__name__)
 
 def compute_indicators(data: pd.DataFrame) -> pd.DataFrame:
     """Compute multiple momentum indicators on a stock DataFrame.
-    
+
     Args:
     ----
       data(pd.DataFrame): Must contain 'Close', 'High', 'Low' prices.
@@ -27,7 +27,7 @@ def compute_indicators(data: pd.DataFrame) -> pd.DataFrame:
     :param data: pd.DataFrame:
     :param data: pd.DataFrame:
     :param data: pd.DataFrame:
-    :param data: pd.DataFrame: 
+    :param data: pd.DataFrame:
 
     """
     try:
@@ -117,7 +117,7 @@ def compute_indicators(data: pd.DataFrame) -> pd.DataFrame:
 def analyze_momentum(data: pd.DataFrame) -> dict[str, Any]:
     """Analyze stock data using momentum indicators and return a structured
     result.
-    
+
     Args:
     ----
       data(pd.DataFrame): The input data containing stock OHLC values.
@@ -132,7 +132,7 @@ def analyze_momentum(data: pd.DataFrame) -> dict[str, Any]:
     :param data: pd.DataFrame:
     :param data: pd.DataFrame:
     :param data: pd.DataFrame:
-    :param data: pd.DataFrame: 
+    :param data: pd.DataFrame:
 
     """
     df = compute_indicators(data)
