@@ -1,3 +1,9 @@
+## v0.3.4 (2025-06-05)
+
+### Fix
+
+- **files**: Address workflows timing out issues
+
 ## v0.3.3 (2025-06-03)
 
 ### Fix
