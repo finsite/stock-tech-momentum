@@ -1,3 +1,9 @@
+## v0.4.0 (2025-06-05)
+
+### Feat
+
+- **sync**: add full sync_if_needed.py script with logging and Makefile support
+
 ## v0.3.4 (2025-06-05)
 
 ### Fix
