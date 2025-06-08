@@ -1,8 +1,7 @@
-"""Main entry point for the Momentum Indicator Service.
+"""Main entry point for the service.
 
-This script starts the service that consumes stock data messages from a
-message queue (RabbitMQ or SQS), applies momentum-based technical
-analysis, and sends the results to output.
+This script initializes logging, loads the queue consumer,
+and begins consuming data using the configured processing callback.
 """
 
 import os
@@ -13,25 +12,21 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 from app.utils.setup_logger import setup_logger
 from app.queue_handler import consume_messages
+from app.output_handler import send_to_output
 
-# Initialize logger
+# Initialize the module-level logger
 logger = setup_logger(__name__)
 
 
 def main() -> None:
-    """Main function to launch the momentum analysis service.
+    """Starts the data processing service.
 
-    This starts the message consumer which waits for new stock data, analyzes it using
-    momentum indicators, and outputs the result.
-
-    Args:
-    ----
-
-
-
+    This function initializes the service by calling the queue consumer,
+    which will begin listening to RabbitMQ or SQS and processing data
+    using the `send_to_output` callback.
     """
-    logger.info("Starting Momentum Indicator Analysis Service...")
-    consume_messages()
+    logger.info("🚀 Starting processing service...")
+    consume_messages(send_to_output)
 
 
 if __name__ == "__main__":
