@@ -5,7 +5,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from app.logger import setup_logger
+from app.utils.setup_logger import setup_logger
 
 logger = setup_logger(__name__)
 
