@@ -69,17 +69,10 @@ def compute_indicators(data: pd.DataFrame) -> pd.DataFrame:
         # TSI (True Strength Index)
         price_change = data["Close"].diff()
         double_smoothed_pc = (
-            price_change.ewm(span=25, adjust=False)
-            .mean()
-            .ewm(span=13, adjust=False)
-            .mean()
+            price_change.ewm(span=25, adjust=False).mean().ewm(span=13, adjust=False).mean()
         )
         double_smoothed_abs_pc = (
-            price_change.abs()
-            .ewm(span=25, adjust=False)
-            .mean()
-            .ewm(span=13, adjust=False)
-            .mean()
+            price_change.abs().ewm(span=25, adjust=False).mean().ewm(span=13, adjust=False).mean()
         )
         data["TSI"] = 100 * (double_smoothed_pc / double_smoothed_abs_pc)
 
